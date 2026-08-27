@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="NBTRP 神经母细胞瘤六基因预后风险评估工具：数据仅在本机浏览器中处理。">
+  <meta name="theme-color" content="#123c69">
+  <title>NBTRP 风险评估中心</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header class="site-header">
+    <div class="utility"><div class="shell utility-inner"><span>NBTRP 神经母细胞瘤预后研究工具</span><span>数据仅在本机处理 · 不上传</span></div></div>
+    <div class="shell brand-row">
+      <a class="brand" href="#top" aria-label="NBTRP 风险评估中心首页">
+        <span class="brand-mark" aria-hidden="true">N</span>
+        <span><strong>NBTRP</strong><small>风险评估中心</small></span>
+      </a>
+      <button id="menu-toggle" class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">菜单</button>
+      <nav id="site-nav" class="site-nav" aria-label="主导航">
+        <a href="#about">了解风险评分</a><a href="#how">评估流程</a><a href="#assessment">开始评估</a><a href="#science">模型依据</a><a href="#faq">常见问题</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="top" class="hero">
+      <div class="shell hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">RESEARCH RISK ASSESSMENT</div>
+          <h1>从基因表达数据中，<br><em>了解相对预后风险</em></h1>
+          <p>使用作者公开的六基因 XGBoost 生存模型，对研究队列进行 NBTRP 相对风险评估。几分钟内获得分数、队列分层和可下载结果。</p>
+          <div class="hero-actions"><a class="button primary" href="#assessment">开始评估</a><a class="text-link" href="#about">先了解它能告诉我什么 <span>→</span></a></div>
+          <div class="trust-row"><span>✓ 真实公开模型</span><span>✓ 浏览器本地计算</span><span>✓ 已与 R 结果核验</span></div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="orb orb-a"></div><div class="orb orb-b"></div>
+          <div class="result-preview">
+            <span class="preview-label">评估报告预览</span>
+            <div class="gauge"><div class="gauge-ring"><strong>NBTRP</strong><small>相对风险</small></div></div>
+            <div class="preview-scale"><i></i><i></i><i></i></div>
+            <p>基于 6 个模型特征与<br>83 棵梯度提升树</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quick-facts" aria-label="工具特点"><div class="shell facts-grid">
+      <div><strong>6</strong><span>个模型基因</span></div><div><strong>83</strong><span>棵决策树</span></div><div><strong>223</strong><span>例公开样本验证</span></div><div><strong>&lt;2.3×10⁻⁷</strong><span>与 R 最大绝对误差</span></div>
+    </div></section>
+
+    <section id="about" class="section intro-section"><div class="shell narrow center">
+      <span class="section-kicker">为什么了解评分</span><h2>风险评分不是答案，<br>而是研究决策的一条线索</h2>
+      <p class="lead">NBTRP 将六个基因的表达模式汇总为 Cox 相对风险分数，用来比较同一研究队列内样本的相对预后风险。它不会预测某位患者一定会发生什么，也不是患病概率。</p>
+      <div class="benefit-grid">
+        <article><span class="icon">01</span><h3>看见表达模式</h3><p>将多个基因特征转化为便于比较的单一研究评分。</p></article>
+        <article><span class="icon">02</span><h3>识别队列差异</h3><p>按当前队列中位数探索高、低评分样本的分布。</p></article>
+        <article><span class="icon">03</span><h3>支持后续研究</h3><p>导出结果，用于生存分析、分层验证与假设生成。</p></article>
+      </div>
+    </div></section>
+
+    <section id="how" class="section process-section"><div class="shell">
+      <div class="section-heading"><div><span class="section-kicker light">评估怎样进行</span><h2>三个步骤，获得队列评估结果</h2></div><p>开始前请准备至少两个样本的标准化表达矩阵。为了得到更稳定且可解释的结果，建议上传完整研究队列。</p></div>
+      <ol class="process-list">
+        <li><span>1</span><div><h3>准备表达矩阵</h3><p>支持 TXT、TSV、CSV；基因可按行或按列排列。</p></div></li>
+        <li><span>2</span><div><h3>本地标准化与推理</h3><p>浏览器按基因执行队列内 Z-score，再运行真实模型。</p></div></li>
+        <li><span>3</span><div><h3>查看并导出报告</h3><p>获得相对风险分数、队列分层及 CSV 明细。</p></div></li>
+      </ol>
+    </div></section>
+
+    <section id="assessment" class="section assessment-section"><div class="shell">
+      <div class="assessment-heading center"><span class="section-kicker">开始评估</span><h2>上传您的研究队列表达矩阵</h2><p>所有计算都在当前浏览器完成。文件内容不会发送到服务器。</p></div>
+      <div class="assessment-card">
+        <div class="card-top"><div class="step-chip">第 1 步 / 共 1 步</div><div id="model-state" class="model-state"><span></span>正在核验模型</div></div>
+        <div class="input-layout">
+          <div id="upload-panel" class="upload-panel">
+            <div class="upload-icon" aria-hidden="true">⇧</div><h3>选择表达矩阵文件</h3><p>将文件拖放到这里，或从电脑中选择</p>
+            <label class="button primary upload-button">选择文件<input id="file-input" type="file" accept=".txt,.tsv,.csv,text/plain,text/csv"></label>
+            <small>支持 .txt、.tsv、.csv</small>
+          </div>
+          <div class="or"><span>或</span></div>
+          <div class="paste-panel"><div class="paste-head"><h3>直接粘贴矩阵</h3><button id="load-example" class="link-button" type="button">载入作者示例</button></div>
+            <textarea id="matrix-input" spellcheck="false" aria-label="表达矩阵" placeholder="Gene&#9;Sample_A&#9;Sample_B&#10;CLEC2D&#9;...&#9;...&#10;GDAP1L1&#9;...&#9;...&#10;PHF21B&#9;...&#9;...&#10;SERPINF1&#9;...&#9;...&#10;THRA&#9;...&#9;...&#10;UNG&#9;...&#9;..."></textarea>
+          </div>
+        </div>
+        <div class="assessment-footer"><div><div id="status" class="status" role="status" aria-live="polite">正在加载模型…</div><small>至少 2 个样本；推荐完整提供 CLEC2D、GDAP1L1、PHF21B、SERPINF1、THRA、UNG。</small></div><button id="calculate" class="button action" type="button">生成评估结果 <span>→</span></button></div>
+      </div>
+      <div class="privacy-note"><span class="lock" aria-hidden="true">◆</span><div><strong>您的研究数据保持私密</strong><p>模型文件和表达数据都只在本地浏览器内读取与计算。关闭页面后，本工具不会保留上传内容。</p></div></div>
+    </div></section>
+
+    <section id="results" class="section results-section" hidden><div class="shell">
+      <div class="report-card">
+        <div class="report-header"><div><span class="section-kicker">您的评估报告</span><h2>队列相对风险结果</h2><div id="summary" class="report-summary"></div></div><button id="download" class="button outline" type="button">下载 CSV</button></div>
+        <div class="result-overview">
+          <div class="metric"><span>样本数</span><strong id="sample-count">—</strong><small>成功完成推理</small></div>
+          <div class="metric"><span>队列中位数</span><strong id="median-score">—</strong><small>仅用于本次队列分层</small></div>
+          <div class="distribution"><div class="dist-head"><span>评分分布</span><span><b class="dot low-dot"></b>低分组　<b class="dot high-dot"></b>高分组</span></div><div id="score-chart" class="score-chart" aria-label="评分分布图"></div></div>
+        </div>
+        <div class="result-callout"><strong>如何阅读：</strong>分数越高表示模型估计的相对风险越高。这里的“高/低”只相对于本次上传队列的中位数，不是临床阈值，也不能跨平台直接比较。</div>
+        <div class="table-heading"><h3>样本明细</h3><span>按输入顺序显示</span></div>
+        <div class="table-wrap"><table><thead><tr><th>样本</th><th>NBTRP 相对风险分数</th><th>当前队列分组</th></tr></thead><tbody id="result-body"></tbody></table></div>
+      </div>
+    </div></section>
+
+    <section id="science" class="section science-section"><div class="shell science-grid">
+      <div><span class="section-kicker">模型依据</span><h2>透明、可复核的研究实现</h2><p class="lead">本工具不是重新训练的近似模型，而是将作者发布的 XGBoost 模型转换为浏览器可读取格式，并复现其推理逻辑。</p><a class="text-link dark" href="https://doi.org/10.1038/s41419-026-09132-y" target="_blank" rel="noreferrer">查看论文 DOI <span>↗</span></a></div>
+      <div class="evidence-card"><ul><li><strong>模型来源</strong><span>作者公开 xgb.fit_model_new.rds</span></li><li><strong>目标函数</strong><span>XGBoost survival:cox</span></li><li><strong>浏览器模型</strong><span>83 棵回归树</span></li><li><strong>一致性验证</strong><span>223 个公开示例样本全部核验</span></li></ul></div>
+    </div></section>
+
+    <section id="faq" class="section faq-section"><div class="shell faq-grid"><div><span class="section-kicker">常见问题</span><h2>使用前需要知道的事</h2></div><div class="accordion">
+      <details open><summary>这个评分是患者的患病概率吗？</summary><p>不是。它是 Cox 生存模型输出的相对风险分数，用于研究队列内部比较，不是绝对概率。</p></details>
+      <details><summary>为什么至少需要两个样本？</summary><p>原作者流程会对每个基因在当前队列内进行 Z-score 标准化。单个样本无法计算标准差，建议使用完整研究队列。</p></details>
+      <details><summary>不同队列的分数能直接比较吗？</summary><p>通常不能。表达平台、预处理、批次效应和队列构成均会影响标准化及评分，应先进行严格的外部验证与一致化处理。</p></details>
+      <details><summary>数据会上传或保存吗？</summary><p>不会。当前版本完全在本机浏览器中解析文件和运行模型，不调用远程计算接口。</p></details>
+    </div></div></section>
+
+    <section class="disclaimer"><div class="shell"><strong>重要医学声明</strong><p>本网站仅用于学术研究和方法演示，不提供医疗建议、专业诊断或治疗意见，不能替代医生或其他合格医疗专业人员的判断。请勿依据本工具结果作出个体临床决策。</p></div></section>
+  </main>
+
+  <footer class="site-footer"><div class="shell footer-grid"><div class="brand footer-brand"><span class="brand-mark">N</span><span><strong>NBTRP</strong><small>风险评估中心</small></span></div><div><strong>工具</strong><a href="#assessment">开始评估</a><a href="#how">评估流程</a></div><div><strong>了解更多</strong><a href="#science">模型依据</a><a href="#faq">常见问题</a></div><div><strong>使用边界</strong><span>研究用途，不用于临床诊断</span><span>本地计算，不上传数据</span></div></div><div class="shell copyright"><span>NBTRP 本地研究版</span><span>原模型版权归论文作者所有 · MIT License</span></div></footer>
+  <script src="./app.js"></script>
+</body>
+</html>
